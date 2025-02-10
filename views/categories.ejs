@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories</title>
+  </head>
+  <body>
+    <h1>Car Categories</h1>
+    <ul>
+      <% categories.forEach(category => { %>
+      <li>
+        <a href="/cars/<%= category.body_type %>"><%= category.body_type %></a>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

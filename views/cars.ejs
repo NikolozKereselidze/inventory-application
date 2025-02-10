@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car List</title>
+  </head>
+  <body>
+    <h1>Cars Available</h1>
+
+    <% cars.forEach(function(car) { %>
+    <div>
+      <h2><%= car.brand %> <%= car.model %></h2>
+      <p><strong>Year:</strong> <%= car.year %></p>
+      <p><strong>Price:</strong> $<%= car.price %></p>
+      <p><strong>Status:</strong> <%= car.status %></p>
+      <p><strong>Owner:</strong> <%= car.owner_name %></p>
+      <p><strong>Category:</strong> <%= car.body_type %></p>
+      <!-- Add more car details here as needed -->
+    </div>
+    <hr />
+    <% }); %>
+  </body>
+</html>
