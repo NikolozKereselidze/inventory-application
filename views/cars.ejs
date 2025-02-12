@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Cars Available</h1>
+    <a href="/">Home</a>
 
     <% cars.forEach(function(car) { %>
     <div>
@@ -16,7 +17,8 @@
       <p><strong>Status:</strong> <%= car.status %></p>
       <p><strong>Owner:</strong> <%= car.owner_name %></p>
       <p><strong>Category:</strong> <%= car.body_type %></p>
-      <!-- Add more car details here as needed -->
+      <a href="car/<%= car.id %>">Details</a>
+      <a href="update/<%= car.id %>">Edit</a>
     </div>
     <hr />
     <% }); %>
