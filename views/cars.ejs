@@ -13,7 +13,9 @@
     <a href="/cars/new">Add New Car</a>
     <% } %> <% if (page === 'Home') { %>
     <a href="/categories">Categories</a>
-    <% } %> <% cars.forEach(function(car) { %>
+    <% } %> <% cars.forEach(function(car) { %> <% if (page === 'Home') { %>
+    <a href="/new/user">Create Users</a>
+    <% } %>
     <div>
       <h2><%= car.brand %> <%= car.model %></h2>
       <p><strong>Year:</strong> <%= car.year %></p>

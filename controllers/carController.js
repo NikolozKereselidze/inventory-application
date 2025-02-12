@@ -21,7 +21,8 @@ async function getCar(req, res) {
 }
 
 async function showCreateCarForm(req, res) {
-  res.render("form");
+  const userLength = await db.getUserLength();
+  res.render("form", { userLength });
 }
 
 async function createCar(req, res) {
@@ -57,14 +58,13 @@ async function showUpdateCar(req, res) {
 }
 
 async function updateCar(req, res) {
-  const { brand, model, year, price, status, owner_id, body_type } = req.body;
+  const { brand, model, year, price, status, body_type } = req.body;
   await db.updateCar(
     brand,
     model,
     year,
     price,
     status,
-    owner_id,
     body_type,
     req.params.carId
   );
@@ -77,6 +77,17 @@ async function deleteCar(req, res) {
   res.redirect("/");
 }
 
+// USER RELATED FUNCTIONS
+async function createUser(req, res) {
+  if (req.method === "GET") {
+    res.render("createUser");
+  } else if (req.method === "POST") {
+    const { fullName, phone, role } = req.body;
+    await db.createUser(fullName, phone, role);
+    res.redirect("/");
+  }
+}
+
 module.exports = {
   getAllCars,
   getCategories,
@@ -87,4 +98,5 @@ module.exports = {
   showUpdateCar,
   updateCar,
   deleteCar,
+  createUser,
 };

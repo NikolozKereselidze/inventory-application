@@ -69,7 +69,6 @@ async function updateCar(
   year,
   price,
   status,
-  owner_id,
   body_type,
   transmission_type,
   fuel_type,
@@ -78,7 +77,7 @@ async function updateCar(
   try {
     await pool.query(
       `UPDATE cars  
-        SET brand = $1, model = $2, year = $3, price = $4, status = $5, owner_id = $6, body_type = $7, transmission_type = $8, fuel_type = $9
+        SET brand = $1, model = $2, year = $3, price = $4, status = $5,  body_type = $6, transmission_type = $7, fuel_type = $8
         WHERE id = $10`,
       [
         brand,
@@ -86,7 +85,6 @@ async function updateCar(
         year,
         price,
         status,
-        owner_id,
         body_type,
         transmission_type,
         fuel_type,
@@ -109,6 +107,23 @@ async function deleteCar(carId) {
   );
 }
 
+// QUERIES TO CREATE USERS
+async function createUser(fullName, phone, role) {
+  await pool.query(
+    `
+    INSERT INTO USERS (name, phone, role)
+    VALUES ($1, $2, $3)
+    `,
+    [fullName, phone, role]
+  );
+}
+
+async function getUserLength() {
+  const results = await pool.query(`
+    SELECT COUNT(*) FROM users`);
+  return results.rows[0].count;
+}
+
 module.exports = {
   getAllCarInfo,
   getAllCategories,
@@ -117,4 +132,6 @@ module.exports = {
   createCar,
   updateCar,
   deleteCar,
+  createUser,
+  getUserLength,
 };
