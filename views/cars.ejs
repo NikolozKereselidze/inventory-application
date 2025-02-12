@@ -8,6 +8,7 @@
   <body>
     <h1>Cars Available</h1>
     <a href="/">Home</a>
+    <a href="/cars/new">Add New Car</a>
 
     <% cars.forEach(function(car) { %>
     <div>
@@ -17,8 +18,11 @@
       <p><strong>Status:</strong> <%= car.status %></p>
       <p><strong>Owner:</strong> <%= car.owner_name %></p>
       <p><strong>Category:</strong> <%= car.body_type %></p>
+      <p><strong>Fuel Type:</strong> <%= car.fuel_type %></p>
+      <p><strong>Tranmsission Type:</strong> <%= car.transmission_type %></p>
       <a href="car/<%= car.id %>">Details</a>
       <a href="update/<%= car.id %>">Edit</a>
+      <a href="delete/<%= car.id %>">Delete car</a>
     </div>
     <hr />
     <% }); %>

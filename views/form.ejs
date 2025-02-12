@@ -3,48 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= car ? "Edit Car" : "Add New Car" %></title>
+    <title><%= "Add New Car" %></title>
   </head>
   <body>
-    <h1><%= car ? "Edit Car" : "Add a New Car" %></h1>
-    
-    <form action="<%= car ? '/car/update/' + car[0].id : '/cars/new' %>" method="POST">
+    <h1><%= "Add a New Car" %></h1>
 
-      <% if (car) { %>
-        <input type="hidden" name="_method" value="PUT" />
-      <% } %>
+    <form action="<%= '/cars/new' %>" method="POST">
+      <input type="hidden" name="_method" value="PUT" />
 
       <label>Brand:</label>
-      <input type="text" name="brand" value="<%= car[0]?.brand || '' %>" required />
+      <input type="text" name="brand" v required />
 
       <label>Model:</label>
-      <input type="text" name="model" value="<%= car[0]?.model || '' %>" required />
+      <input type="text" name="model" required />
 
       <label>Year:</label>
-      <input type="number" name="year" value="<%= car[0]?.year || '' %>" required />
+      <input type="number" name="year" required />
 
       <label>Price ($):</label>
-      <input type="number" name="price" value="<%= car[0]?.price || '' %>" required />
+      <input type="number" name="price" required />
 
       <label>Status:</label>
       <select name="status">
-        <option value="available" <%= car[0]?.status === "available" ? "selected" : "" %>>Available</option>
-        <option value="sold" <%= car[0]?.status === "sold" ? "selected" : "" %>>Sold</option>
+        <option value="available">Available</option>
+        <option value="sold">Sold</option>
       </select>
 
       <label>Owner ID:</label>
-      <input type="number" name="owner_id" value="<%= car[0]?.owner_id || '' %>" required />
+      <input type="number" name="owner_id" required />
 
       <label>Body Type:</label>
       <select name="body_type">
-        <option value="Sedan" <%= car[0]?.body_type === "Sedan" ? "selected" : "" %>>Sedan</option>
-        <option value="Coupe" <%= car[0]?.body_type === "Coupe" ? "selected" : "" %>>Coupe</option>
-        <option value="Convertible" <%= car[0]?.body_type === "Convertible" ? "selected" : "" %>>Convertible</option>
-        <option value="Wagon" <%= car[0]?.body_type === "Wagon" ? "selected" : "" %>>Wagon</option>
-        <option value="Hatchback" <%= car[0]?.body_type === "Hatchback" ? "selected" : "" %>>Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="Coupe">Coupe</option>
+        <option value="Convertible">Convertible</option>
+        <option value="Wagon">Wagon</option>
+        <option value="Hatchback">Hatchback</option>
       </select>
 
-      <button type="submit"><%= car ? "Update Car" : "Add Car" %></button>
+      <label>Transmission Type:</label>
+      <select name="transmission_type">
+        <option value="Automatic">Automatic</option>
+        <option value="Manual">Manual</option>
+      </select>
+
+      <label>Fuel Type:</label>
+      <select name="fuel_type">
+        <option value="Gas">Gas</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Electric">Electric</option>
+      </select>
+
+      <button type="submit"><%= "Add Car" %></button>
     </form>
 
     <a href="/">Back to Home</a>

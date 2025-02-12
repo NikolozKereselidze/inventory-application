@@ -25,15 +25,35 @@ async function showCreateCarForm(req, res) {
 }
 
 async function createCar(req, res) {
-  const { brand, model, year, price, status, owner_id, body_type } = req.body;
+  const {
+    brand,
+    model,
+    year,
+    price,
+    status,
+    owner_id,
+    body_type,
+    transmission_type,
+    fuel_type,
+  } = req.body;
 
-  await db.createCar(brand, model, year, price, status, owner_id, body_type);
+  await db.createCar(
+    brand,
+    model,
+    year,
+    price,
+    status,
+    owner_id,
+    body_type,
+    transmission_type,
+    fuel_type
+  );
   res.redirect("/");
 }
 
 async function showUpdateCar(req, res) {
   const car = await db.getCarDetail(req.params.carId);
-  res.render("form", { car });
+  res.render("carEditForm", { car });
 }
 
 async function updateCar(req, res) {
@@ -51,6 +71,12 @@ async function updateCar(req, res) {
   res.redirect("/");
 }
 
+async function deleteCar(req, res) {
+  const carId = req.params.carId;
+  await db.deleteCar(carId);
+  res.redirect("/");
+}
+
 module.exports = {
   getAllCars,
   getCategories,
@@ -60,4 +86,5 @@ module.exports = {
   createCar,
   showUpdateCar,
   updateCar,
+  deleteCar,
 };
