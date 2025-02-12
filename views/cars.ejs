@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Car List</title>
   </head>
   <body>
     <h1>Cars Available</h1>
     <a href="/">Home</a>
+    <% if (page === 'Home') { %>
     <a href="/cars/new">Add New Car</a>
-
-    <% cars.forEach(function(car) { %>
+    <% } %> <% if (page === 'Home') { %>
+    <a href="/categories">Categories</a>
+    <% } %> <% cars.forEach(function(car) { %>
     <div>
       <h2><%= car.brand %> <%= car.model %></h2>
       <p><strong>Year:</strong> <%= car.year %></p>
@@ -20,9 +23,13 @@
       <p><strong>Category:</strong> <%= car.body_type %></p>
       <p><strong>Fuel Type:</strong> <%= car.fuel_type %></p>
       <p><strong>Tranmsission Type:</strong> <%= car.transmission_type %></p>
+      <% if (page === 'Home') { %>
       <a href="car/<%= car.id %>">Details</a>
+      <% } %> <% if (page === 'car') { %>
       <a href="update/<%= car.id %>">Edit</a>
+      <% } %> <% if (page === 'Home') { %>
       <a href="delete/<%= car.id %>">Delete car</a>
+      <% } %>
     </div>
     <hr />
     <% }); %>

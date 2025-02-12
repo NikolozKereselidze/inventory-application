@@ -2,7 +2,7 @@ const db = require("../db/queries");
 
 async function getAllCars(req, res) {
   const allCars = await db.getAllCarInfo();
-  res.render("cars", { cars: allCars });
+  res.render("cars", { cars: allCars, page: "Home" });
 }
 
 async function getCategories(req, res) {
@@ -12,12 +12,12 @@ async function getCategories(req, res) {
 
 async function getCarCategory(req, res) {
   const cars = await db.getCarsByCategory(req.params.category);
-  res.render("cars", { cars });
+  res.render("cars", { cars, page: "Home" });
 }
 
 async function getCar(req, res) {
   const car = await db.getCarDetail(req.params.carId);
-  res.render("cars", { cars: car });
+  res.render("cars", { cars: car, page: "car" });
 }
 
 async function showCreateCarForm(req, res) {
